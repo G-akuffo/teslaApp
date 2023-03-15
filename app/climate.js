@@ -8,6 +8,7 @@ const ClimateScreen = () => {
   const router = useRouter();
 
   const [temperature, setTemperature] = useState(20);
+
   const handleTemperatureChange = (value) => {
     const newTemperature = Math.max(16, Math.min(32, temperature + value));
     setTemperature(newTemperature);
