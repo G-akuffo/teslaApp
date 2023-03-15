@@ -7,7 +7,12 @@ import { useState } from "react";
 const ClimateScreen = () => {
   const router = useRouter();
 
-  const [temperature, setTemperature] = useState(75);
+  const [temperature, setTemperature] = useState(20);
+  const handleTemperatureChange = (value) => {
+    const newTemperature = Math.max(16, Math.min(32, temperature + value));
+    setTemperature(newTemperature);
+  };
+
   const [on, setOn] = useState(false);
 
   return (
@@ -19,7 +24,7 @@ const ClimateScreen = () => {
       </Pressable>
 
       <View style={styles.footer}>
-        <Text style={styles.label}>Interior 74°F - Exterior 66°F</Text>
+        <Text style={styles.label}>Interior 18°C - Exterior 28°C</Text>
 
         <View style={styles.controlsRow}>
           <Pressable
@@ -36,14 +41,14 @@ const ClimateScreen = () => {
 
           <View style={styles.temperatureContainer}>
             <Entypo
-              onPress={() => setTemperature(temperature - 1)}
+              onPress={() => handleTemperatureChange(-1)}
               name="chevron-left"
               size={30}
               color="gray"
             />
             <Text style={styles.temperatureText}>{temperature}°</Text>
             <Entypo
-              onPress={() => setTemperature(temperature + 1)}
+              onPress={() => handleTemperatureChange(1)}
               name="chevron-right"
               size={30}
               color="gray"
